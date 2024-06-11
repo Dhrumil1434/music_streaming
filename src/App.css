@@ -1,5 +1,3 @@
-/* src/App.css */
-
 body {
   font-family: 'Arial', sans-serif;
   background-color: #F3F7EC;
@@ -12,6 +10,8 @@ body {
   background-color: #006989;
   color: #F3F7EC;
   padding: 10px 20px;
+  display: flex;
+  justify-content: space-between; /* Align items horizontally */
 }
 
 .navbar .navbar-brand {
@@ -24,6 +24,7 @@ body {
 .search-form {
   display: flex;
   align-items: center;
+  flex-grow: 1; /* Allow form to grow horizontally */
 }
 
 .search-input {
@@ -66,4 +67,28 @@ body {
 .song-card:hover {
   transform: scale(1.05);
   cursor: pointer;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack navbar items vertically */
+    align-items: center; /* Center items vertically */
+  }
+
+  .search-form {
+    width: 100%; /* Fosrm takes full width on smaller screens */
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .song-list {
+    flex-direction: column; /* Stack song cards vertically */
+  }
+
+  .song-card {
+    flex: 1 0 100%; /* Make each song card take full width */
+  }
 }

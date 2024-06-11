@@ -1,4 +1,5 @@
 
+import './SongCard.css'
 function SongCard({ image, songName, artist, description, preview_url}) {
   
  
