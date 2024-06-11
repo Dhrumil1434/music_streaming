@@ -32,7 +32,7 @@ function App() {
     event.preventDefault();
     if (searchText.trim() === '') return;
     try {
-      const response = await fetch(`https://v1.nocodeapi.com/dmeel/spotify/xCRNhJEfQzWO/search?q=${searchText}&type=track`);
+      const response = await fetch(`https://v1.nocodeapi.com/dmeel/spotify/xCRNhJEfQzWOMumR/search?q=${searchText}&type=track`);
       const data = await response.json();
 
       // Set the fetched tracks data to the state
