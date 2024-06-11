@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Dhrumil1434/music_streaming/static/css/main.ea4be30f.css",
+    "main.js": "/Dhrumil1434/music_streaming/static/js/main.95bedf12.js",
+    "static/js/453.fa2f5fc1.chunk.js": "/Dhrumil1434/music_streaming/static/js/453.fa2f5fc1.chunk.js",
+    "index.html": "/Dhrumil1434/music_streaming/index.html",
+    "main.ea4be30f.css.map": "/Dhrumil1434/music_streaming/static/css/main.ea4be30f.css.map",
+    "main.95bedf12.js.map": "/Dhrumil1434/music_streaming/static/js/main.95bedf12.js.map",
+    "453.fa2f5fc1.chunk.js.map": "/Dhrumil1434/music_streaming/static/js/453.fa2f5fc1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ea4be30f.css",
+    "static/js/main.95bedf12.js"
+  ]
+}
