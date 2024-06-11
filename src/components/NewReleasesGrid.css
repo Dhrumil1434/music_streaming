@@ -1,0 +1,43 @@
+/* src/components/NewReleasesGrid.css */
+
+.new-releases-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .release-card {
+    width: calc(33.333% - 20px);
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  
+  .release-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .release-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .release-info {
+    padding: 10px;
+  }
+  
+  .release-title {
+    font-size: 1rem;
+    margin: 0;
+    color: #006989;
+  }
+  
+  .release-artist {
+    font-size: 0.9rem;
+    margin: 5px 0 0;
+    color: #555;
+  }
+  

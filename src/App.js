@@ -1,24 +1,99 @@
-import logo from './logo.svg';
+// src/App.js
+
+import { useState, useEffect } from 'react';
 import './App.css';
+import SongCard from './components/SongCard';
+import NewReleasesGrid from './components/NewReleasesGrid';
 
 function App() {
+  const [tracks, setTracks] = useState([]);
+  const [newReleases, setNewReleases] = useState([]);
+  const [searchText, setSearchText] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [showNewReleases, setShowNewReleases] = useState(true);
+
+  useEffect(() => {
+    // Fetch new releases on component mount
+    const fetchNewReleases = async () => {
+      try {
+        const response = await fetch('https://v1.nocodeapi.com/dhrumil/spotify/OFgBBMtwQoTZKNSx/browse/new?country=IN');
+        const data = await response.json();
+
+        // Set the fetched new releases data to the state
+        setNewReleases(data.albums.items);
+      } catch (error) {
+        console.error('Error fetching new releases:', error);
+      }
+    };
+
+    fetchNewReleases();
+  }, []);
+
+  useEffect(() => {
+    // Filter tracks based on search text
+    const filteredTracks = tracks.filter(track =>
+      track.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setSearchResults(filteredTracks);
+  }, [searchText, tracks]);
+
+  const getTracks = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch(`https://v1.nocodeapi.com/dhrumil/spotify/OFgBBMtwQoTZKNSx/search?q=${searchText}&type=track`);
+      const data = await response.json();
+
+      // Set the fetched tracks data to the state
+      setTracks(data.tracks.items);
+      setShowNewReleases(false); // Hide new releases when search is performed
+    } catch (error) {
+      console.error('Error fetching tracks:', error);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <nav className="navbar">
+        <div className="container">
+          <span className="navbar-brand">Music Player</span>
+          <form className="search-form" onSubmit={getTracks}>
+            <input
+              className="search-input"
+              type="search"
+              placeholder="Search for a song"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+            <button className="search-button" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <div className='container'>
+        {showNewReleases ? (
+          <>
+            <h2 style={{ textAlign: 'center' }}>New Releases</h2>
+            <NewReleasesGrid newReleases={newReleases} />
+          </>
+        ) : (
+          <>
+            <h2 style={{ textAlign: 'center' }}>Search Results</h2>
+            <div className='song-list'>
+              {searchResults.map((element) => (
+                <div key={element.id} className='song-card'>
+                  <SongCard
+                    image={element.album.images[0].url}
+                    songName={element.name}
+                    artist={element.album.artists[0].name}
+                    description={element.album.release_date}
+                    preview_url={element.preview_url}
+                  />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 }
 
