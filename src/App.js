@@ -15,7 +15,7 @@ function App() {
     // Fetch new releases on component mount
     const fetchNewReleases = async () => {
       try {
-        const response = await fetch('https://v1.nocodeapi.com/dhrumil/spotify/OFgBBMtwQoTZKNSx/browse/new?country=IN');
+        const response = await fetch('https://v1.nocodeapi.com/dmeel/spotify/xCRNhJEfQzWOMumR/browse/new?country=IN');
         const data = await response.json();
 
         // Set the fetched new releases data to the state
@@ -32,7 +32,7 @@ function App() {
     event.preventDefault();
     if (searchText.trim() === '') return;
     try {
-      const response = await fetch(`https://v1.nocodeapi.com/dhrumil/spotify/OFgBBMtwQoTZKNSx/search?q=${searchText}&type=track`);
+      const response = await fetch(`https://v1.nocodeapi.com/dmeel/spotify/xCRNhJEfQzWO/search?q=${searchText}&type=track`);
       const data = await response.json();
 
       // Set the fetched tracks data to the state
