@@ -9,7 +9,6 @@ function App() {
   const [tracks, setTracks] = useState([]);
   const [newReleases, setNewReleases] = useState([]);
   const [searchText, setSearchText] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
   const [showNewReleases, setShowNewReleases] = useState(true);
 
   useEffect(() => {
@@ -29,16 +28,9 @@ function App() {
     fetchNewReleases();
   }, []);
 
-  useEffect(() => {
-    // Filter tracks based on search text
-    const filteredTracks = tracks.filter(track =>
-      track.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-    setSearchResults(filteredTracks);
-  }, [searchText, tracks]);
-
   const getTracks = async (event) => {
     event.preventDefault();
+    if (searchText.trim() === '') return;
     try {
       const response = await fetch(`https://v1.nocodeapi.com/dhrumil/spotify/OFgBBMtwQoTZKNSx/search?q=${searchText}&type=track`);
       const data = await response.json();
@@ -71,14 +63,14 @@ function App() {
       <div className='container'>
         {showNewReleases ? (
           <>
-            <h2 style={{ textAlign: 'center' }}>New Releases</h2>
+            <h2 className="title">New Releases</h2>
             <NewReleasesGrid newReleases={newReleases} />
           </>
         ) : (
           <>
-            <h2 style={{ textAlign: 'center' }}>Search Results</h2>
+            <h2 className="title">Search Results</h2>
             <div className='song-list'>
-              {searchResults.map((element) => (
+              {tracks.map((element) => (
                 <div key={element.id} className='song-card'>
                   <SongCard
                     image={element.album.images[0].url}
