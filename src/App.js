@@ -12,13 +12,12 @@ function App() {
   const [showNewReleases, setShowNewReleases] = useState(true);
 
   useEffect(() => {
-    // Fetch new releases on component mount
+    
     const fetchNewReleases = async () => {
       try {
-        const response = await fetch('https://v1.nocodeapi.com/dmeel/spotify/xCRNhJEfQzWOMumR/browse/new?country=IN');
+        const response = await fetch('https://v1.nocodeapi.com/dmeeel/spotify/jIgdIWYOyIMDExyl/browse/new?country=IN');
         const data = await response.json();
 
-        // Set the fetched new releases data to the state
         setNewReleases(data.albums.items);
       } catch (error) {
         console.error('Error fetching new releases:', error);
@@ -32,10 +31,10 @@ function App() {
     event.preventDefault();
     if (searchText.trim() === '') return;
     try {
-      const response = await fetch(`https://v1.nocodeapi.com/dmeel/spotify/xCRNhJEfQzWOMumR/search?q=${searchText}&type=track`);
+      const response = await fetch(`https://v1.nocodeapi.com/dmeeel/spotify/jIgdIWYOyIMDExyl/search?q=${searchText}&type=track`);
       const data = await response.json();
 
-      // Set the fetched tracks data to the state
+     
       setTracks(data.tracks.items);
       setShowNewReleases(false); // Hide new releases when search is performed
     } catch (error) {
